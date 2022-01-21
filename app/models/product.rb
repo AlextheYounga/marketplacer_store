@@ -11,6 +11,7 @@ class Product < ApplicationRecord
         self.create_or_find_by(uuid: row["uuid"]) do |product|
           product.name = row["name"]
           product.price = row["price"]
+          product.product_image = row["product_image"]
         end
       end
     end

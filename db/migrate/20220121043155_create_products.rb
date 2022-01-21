@@ -4,6 +4,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :uuid
       t.string :name
       t.decimal :price, precision: 64, scale: 12
+      t.string :product_image
       t.timestamps
     end
   end

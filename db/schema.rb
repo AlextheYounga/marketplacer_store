@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_043155) do
     t.string "uuid"
     t.string "name"
     t.decimal "price", precision: 64, scale: 12
+    t.string "product_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
