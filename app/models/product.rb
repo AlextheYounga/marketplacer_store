@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  belongs_to :draft_order_line
+  
   validates :uuid, presence: true
   validates :name, presence: true
 
