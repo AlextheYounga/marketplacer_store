@@ -1,5 +1,6 @@
 class DraftOrder < ApplicationRecord
   validates :cart_token, presence: true
+  before_save :calculate_prices
 
   has_many :draft_order_lines
   has_many :promotions
@@ -19,8 +20,13 @@ class DraftOrder < ApplicationRecord
       self.subtotal_price = subtotal
       self.total_discounts = 0 if (self.total_discounts.nil?)
       self.total_price = self.subtotal_price - self.total_discounts
-      self.save()
+      return self
     end
-    return
+    
+    self.subtotal_price = 0
+    self.total_discounts = 0 if (self.total_discounts.nil?)
+    self.total_price = 0
+
+    self
   end
 end
