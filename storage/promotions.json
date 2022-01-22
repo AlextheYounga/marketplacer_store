@@ -1,0 +1,20 @@
+[
+    {
+        "name": "10% Off Promotion",
+        "discount_code": "TENOFF",
+        "discount_amount": 0.1,
+        "price_floor": 20
+    },
+    {
+        "name": "15% Off Promotion",
+        "discount_code": "FIFTEENOFF",
+        "discount_amount": 0.15,
+        "price_floor": 50
+    },
+    {
+        "name": "20% Off Promotion",
+        "discount_code": "TWENTYOFF",
+        "discount_amount": 0.2,
+        "price_floor": 100
+    }
+]
