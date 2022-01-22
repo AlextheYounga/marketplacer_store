@@ -9,6 +9,7 @@ class DraftOrder < ApplicationRecord
       self.order_number = "INV000#{self.id}"
       self.save()
     end
+    return
   end
 
   def calculate_prices
@@ -20,5 +21,6 @@ class DraftOrder < ApplicationRecord
       self.total_price = self.subtotal_price - self.total_discounts
       self.save()
     end
+    return
   end
 end
