@@ -1,5 +1,5 @@
 class Promotion < ApplicationRecord
-  belongs_to :order
+  has_many :orders
   #   enum price_rule_id: { tenoff: 0, fifteenoff: 1, twentyoff: 2 }
 
   def calculate_discount(order_id, discount_code)
@@ -18,15 +18,17 @@ class Promotion < ApplicationRecord
     draft_order.save()
   end
 
-  def import
-    promotions_file = File.read("storage/promotions.json")
-    promotions = JSON.parse(promotions_file)
+  class << self
+    def import
+      promotions_file = File.read("storage/promotions.json")
+      promotions = JSON.parse(promotions_file)
 
-    promotions.each do |row|
-      self.create_or_find_by(discount_code: row["discount_code"]) do |promotion|
-        promotion.name = row["name"]
-        promotion.discount_amount = row["discount_amount"]
-        promotion.price_floor = row["price_floor"]
+      promotions.each do |row|
+        self.create_or_find_by(discount_code: row["discount_code"]) do |promotion|
+          promotion.name = row["name"]
+          promotion.discount_amount = row["discount_amount"]
+          promotion.price_floor = row["price_floor"]
+        end
       end
     end
   end

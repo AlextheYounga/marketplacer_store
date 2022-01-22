@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "products#index"
   get "/cart" => "checkout#cart"
+  post "/cart/add/:id" => "checkout#add"
+  
   resources :products, except: [:signup]
 end

@@ -1,6 +1,6 @@
 class DraftOrderLine < ApplicationRecord
   belongs_to :draft_order
-  has_many :products
+  belongs_to :product
 
   def calculate_prices(line_items)
     line_items.draft_order_lines.each do |line|

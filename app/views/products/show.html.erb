@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <form class="mt-10">
+        <form class="mt-10" action="<%= "/cart/add/#{@product.id}" %>" method="post">
           <!-- Colors -->
           <div>
             <h3 class="text-sm text-gray-900 font-medium">Color</h3>
@@ -213,7 +213,7 @@
             </fieldset>
           </div>
 
-          <button onclick="addToCart(<%= @product.id %>)" type="submit" class="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <button type="submit" class="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Add to bag
           </button>
         </form>
@@ -260,3 +260,9 @@
     </div>
   </div>
 </div>
+<script>
+function addToCart(id) {
+// /cart/add/
+
+}
+</script>
