@@ -1,8 +1,8 @@
 class CartController < ApplicationController
-  before_action :import_promotions, only: [:cart]
+  before_action :import_promotions, only: [:index]
+  before_action :set_order, only: [:index, :check_discount_code]
 
   def index
-    @order = DraftOrder.where(cart_token: cookies[:anon_shopping]).first
   end
 
   def add
@@ -31,13 +31,17 @@ class CartController < ApplicationController
 
   def check_discount_code
     Promotion.calculate_discount(
-      params.fetch(:order_id),
-      params.fetch(:discount_code)
+      @order,
+      params.fetch(:code)
     )
     redirect_to cart_index_path
   end
 
   private
+
+  def set_order
+    @order = DraftOrder.where(cart_token: cookies[:anon_shopping]).first
+  end
 
   def import_promotions
     if Rails.env.development?

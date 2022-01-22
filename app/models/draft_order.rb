@@ -22,10 +22,11 @@ class DraftOrder < ApplicationRecord
       self.total_price = self.subtotal_price - self.total_discounts
       return self
     end
-    
+
     self.subtotal_price = 0
-    self.total_discounts = 0 if (self.total_discounts.nil?)
+    self.total_discounts = 0
     self.total_price = 0
+    self.promotion_id = nil if self.total_discounts == 0
 
     self
   end

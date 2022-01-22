@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root "products#index"
 
   post "/cart/add/:id" => "cart#add"
+  post "/cart/promotion/" => "cart#check_discount_code"
+
   resources :cart, except: [:create, :signup]
   resources :products, except: [:signup]
 end

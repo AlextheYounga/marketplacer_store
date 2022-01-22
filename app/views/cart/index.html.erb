@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
   <div class="h-full flex flex-col bg-white">
     <div class="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
       <div class="flex items-start justify-between">
@@ -57,9 +57,18 @@
     <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
       <div class="flex justify-between text-base font-medium text-gray-900">
         <p>Subtotal</p>
-        <p>$<%= @order.subtotal_price %></p>
+        <p>$<%= @order.total_price %></p>
       </div>
       <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+      <form class="mt-5 sm:flex sm:items-center justify-end" action="/cart/promotion" method="POST">
+        <div class="w-full sm:max-w-xs">
+          <label for="code" class="sr-only">Promotion Code</label>
+          <input type="code" name="code" id="promotion" class="border px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md" placeholder="TENOFF">
+        </div>
+        <button type="submit" class="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          Check Code
+        </button>
+      </form>
       <div class="mt-6">
         <a href="#" class="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Checkout</a>
       </div>
