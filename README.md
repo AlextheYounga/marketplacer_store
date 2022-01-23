@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Example Ecommerce Website
 
-Things you may want to cover:
+Runs price and coupon calculations and allows anonymous orders
 
-* Ruby version
+### Getting Started
 
-* System dependencies
+Run migrations
+```rake db:migrate```
 
-* Configuration
+Build Tailwind CSS
+```rails tailwindcss:build```
 
-* Database creation
+Start Server
+```rails server```
 
-* Database initialization
+Then you're good to go.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Available Coupon Codes
+TENOFF - 10% off on total greater than $20
+FIFTEENOFF - 15% off on total greater than $50
+TWENTYOFF - 20% off on total greater than $100
