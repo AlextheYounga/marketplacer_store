@@ -6,12 +6,12 @@ class CartController < ApplicationController
   end
 
   def add
-    @order = DraftOrder.find_or_create_by(cart_token: cookies[:anon_shopping])
-
     product = Product.find_by_id(params.fetch(:id))
-    DraftOrderLine.generate_line_items(@order, product)
+    @order = DraftOrder.find_or_create_by(cart_token: cookies[:anon_shopping]) #Setting up order under browser cookie.
 
-    @order.generate_order_number()
+    DraftOrderLine.generate_line_items(@order, product) #Build draft order line items.
+    @order.generate_order_number() #Create unique order number
+
     @order.save
 
     redirect_to cart_index_path
@@ -30,7 +30,7 @@ class CartController < ApplicationController
   end
 
   def check_discount_code
-    Promotion.calculate_discount(
+    Promotion.check_discount_code( # Will check price rules and add a promotion id if cart passes checks.
       @order,
       params.fetch(:code)
     )

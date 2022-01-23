@@ -14,19 +14,26 @@ class DraftOrder < ApplicationRecord
   end
 
   def calculate_prices
-    if (self.draft_order_lines.any?)
-      line_items = self.draft_order_lines
-      subtotal = line_items.map { |line| line.price }.sum
-      self.subtotal_price = subtotal
-      self.total_discounts = 0 if (self.total_discounts.nil?)
-      self.total_price = self.subtotal_price - self.total_discounts
+    if (self.draft_order_lines.none?)
+      # If no line_items, reset.
+      self.subtotal_price = 0
+      self.total_discounts = 0
+      self.total_price = 0
+      self.promotion_id = nil
       return self
     end
 
-    self.subtotal_price = 0
-    self.total_discounts = 0
-    self.total_price = 0
-    self.promotion_id = nil if self.total_discounts == 0
+    line_items = self.draft_order_lines
+    subtotal = line_items.map { |line| line.price }.sum
+
+    self.subtotal_price = subtotal
+    self.total_price = self.subtotal_price - self.total_discounts
+
+    if (self.promotion_id)
+      self.total_discounts = Promotion.calculate_discount(self)
+      puts self.promotion_id, self.total_discounts
+      self.promotion_id = nil if (self.total_discounts == 0)
+    end
 
     self
   end
