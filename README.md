@@ -1,6 +1,6 @@
 # Example Ecommerce Website
 
-Runs price and coupon calculations and allows anonymous orders
+Runs price and coupon calculations and allows anonymous orders. Be aware orders do everything except fully submit. All orders are saved as draft orders.
 
 ### Getting Started
 
