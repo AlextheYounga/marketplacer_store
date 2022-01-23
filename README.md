@@ -1,7 +1,6 @@
 # Example Ecommerce Website
 
-![Ecommerce example website storefront!](https://imgur.com/a/dFonc7X "Ecommerce Storefront")
-
+![Example Ecommerce Storefront](https://imgur.com/a/dFonc7X)
 
 Runs price and coupon calculations and allows anonymous orders. Be aware orders do everything except fully submit. All orders are saved as draft orders.
 
