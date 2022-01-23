@@ -7,7 +7,7 @@ class Promotion < ApplicationRecord
       # Checks price rules and adds a promotion id to cart if cart passes.
       promotion = self.where(:discount_code => discount_code).first
       if (promotion.present?)
-        if (draft_order.total_price > promotion.price_floor)
+        if (draft_order.subtotal_price > promotion.price_floor)
           draft_order.promotion_id = promotion.id # Setting promotion id to calculate price later.
           draft_order.save()
         end
@@ -19,8 +19,8 @@ class Promotion < ApplicationRecord
       total_discounts = 0
       if (draft_order.promotion_id.present?)
         promotion = self.find_by_id(draft_order.promotion_id)
-        if (draft_order.total_price > promotion.price_floor) # Redundancy, double checking price floor.
-          total_discounts = (draft_order.total_price * promotion.discount_amount)
+        if (draft_order.subtotal_price > promotion.price_floor) # Redundancy, double checking price floor.
+          total_discounts = (draft_order.subtotal_price * promotion.discount_amount)
         end
       end
       return total_discounts

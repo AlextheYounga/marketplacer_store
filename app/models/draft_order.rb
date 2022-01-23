@@ -27,13 +27,13 @@ class DraftOrder < ApplicationRecord
     subtotal = line_items.map { |line| line.price }.sum
 
     self.subtotal_price = subtotal
-    self.total_price = self.subtotal_price - self.total_discounts
 
     if (self.promotion_id)
       self.total_discounts = Promotion.calculate_discount(self)
-      puts self.promotion_id, self.total_discounts
       self.promotion_id = nil if (self.total_discounts == 0)
     end
+
+    self.total_price = self.subtotal_price - self.total_discounts
 
     self
   end
