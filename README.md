@@ -1,6 +1,4 @@
-# README
-
-## Example Ecommerce Website
+# Example Ecommerce Website
 
 Runs price and coupon calculations and allows anonymous orders
 
